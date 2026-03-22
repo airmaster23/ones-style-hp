@@ -78,7 +78,7 @@ a { color: inherit; text-decoration: none; }
   background: radial-gradient(ellipse at 70% 50%, rgba(255,255,255,.08) 0%, transparent 70%);
 }
 .hero-inner { position: relative; z-index: 1; max-width: 800px; }
-.hero-logo { height: 120px; width: auto; margin: 0 auto 24px; filter: drop-shadow(0 4px 16px rgba(0,0,0,.3)); }
+.hero-logo { height: 240px; width: auto; margin: 0 auto 24px; filter: drop-shadow(0 4px 16px rgba(0,0,0,.3)); }
 .hero-eyecatch { display: inline-flex; gap: 12px; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: var(--pill); padding: 8px 24px; margin-bottom: 32px; }
 .hero-eyecatch span { color: #fff; font-size: 14px; font-weight: 700; }
 .hero h1 { font-size: 52px; font-weight: 900; color: #fff; line-height: 1.25; margin-bottom: 24px; }
