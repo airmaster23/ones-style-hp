@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HP修正フィードバック | 便利屋ワンズスタイル</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --main: #4CA1D9;
+  --sub: #0083cf;
+  --orange: #eb7633;
+  --green: #06c755;
+  --text: #333;
+  --heading: #1a1a2e;
+  --border: #DADADA;
+  --bg: #f5f7fa;
+  --white: #fff;
+  --r: 8px;
+  --pill: 9999px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; padding-bottom: 40px; }
+
+/* Header */
+.fb-header {
+  background: var(--main);
+  color: #fff;
+  padding: 24px 20px;
+  text-align: center;
+}
+.fb-header h1 { font-size: 20px; font-weight: 900; margin-bottom: 8px; }
+.fb-header p { font-size: 13px; opacity: .9; line-height: 1.8; }
+.fb-header a { color: #ffe066; text-decoration: underline; }
+
+/* How to use */
+.fb-howto {
+  max-width: 600px; margin: 16px auto; padding: 0 16px;
+}
+.fb-howto-inner {
+  background: #fffbea;
+  border: 1px solid #f0d060;
+  border-radius: var(--r);
+  padding: 16px;
+  font-size: 13px;
+  line-height: 1.9;
+}
+.fb-howto-inner strong { color: var(--orange); }
+
+/* Counter */
+.fb-counter {
+  max-width: 600px; margin: 12px auto 0; padding: 0 16px;
+  font-size: 13px; color: #888; text-align: right;
+}
+.fb-counter span { color: var(--green); font-weight: 700; }
+
+/* Cards */
+.fb-cards { max-width: 600px; margin: 12px auto 0; padding: 0 16px; }
+
+.fb-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.fb-card.has-content { border-left: 4px solid var(--green); }
+
+.fb-card-head {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.fb-card-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--main); color: #fff;
+  font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.fb-card.has-content .fb-card-num { background: var(--green); }
+.fb-card-name { font-size: 15px; font-weight: 700; color: var(--heading); flex: 1; }
+.fb-card-badge {
+  display: none;
+  font-size: 11px; font-weight: 700;
+  color: var(--green);
+  background: #e6f9ee;
+  padding: 2px 8px;
+  border-radius: var(--pill);
+}
+.fb-card.has-content .fb-card-badge { display: inline-block; }
+.fb-card-icon {
+  font-size: 18px; color: var(--main);
+  transition: transform .2s;
+  flex-shrink: 0;
+}
+.fb-card.open .fb-card-icon { transform: rotate(180deg); }
+
+.fb-card-body {
+  display: none;
+  padding: 0 16px 16px;
+}
+.fb-card.open .fb-card-body { display: block; }
+
+.fb-card-desc {
+  font-size: 13px; color: #888;
+  background: var(--bg);
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+.fb-card-body textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  font-size: 15px;
+  font-family: inherit;
+  line-height: 1.7;
+  resize: vertical;
+  transition: border-color .2s;
+}
+.fb-card-body textarea:focus {
+  outline: none;
+  border-color: var(--main);
+}
+.fb-card-body textarea::placeholder { color: #bbb; }
+
+/* Submit Area */
+.fb-submit {
+  max-width: 600px; margin: 24px auto 0; padding: 0 16px;
+}
+.fb-submit-inner {
+  background: var(--white);
+  border: 2px solid var(--main);
+  border-radius: var(--r);
+  padding: 24px 20px;
+  text-align: center;
+}
+.fb-submit-inner h3 {
+  font-size: 16px; font-weight: 900; color: var(--heading);
+  margin-bottom: 16px;
+}
+.fb-submit-btns { display: flex; flex-direction: column; gap: 10px; }
+
+.fb-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 14px;
+  border-radius: var(--pill);
+  font-size: 15px; font-weight: 700;
+  border: none; cursor: pointer;
+  text-decoration: none;
+  transition: opacity .2s, transform .2s;
+}
+.fb-btn:hover { opacity: .9; }
+.fb-btn:active { transform: scale(.97); }
+.fb-btn-copy { background: var(--orange); color: #fff; }
+.fb-btn-line { background: var(--green); color: #fff; }
+.fb-btn-mail { background: var(--white); color: var(--main); border: 2px solid var(--main); }
+
+/* Toast */
+.fb-toast {
+  position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--heading); color: #fff;
+  padding: 12px 24px; border-radius: var(--pill);
+  font-size: 14px; font-weight: 700;
+  opacity: 0; transition: opacity .3s, transform .3s;
+  z-index: 100; pointer-events: none;
+  white-space: nowrap;
+}
+.fb-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Preview link */
+.fb-preview {
+  max-width: 600px; margin: 16px auto 0; padding: 0 16px; text-align: center;
+}
+.fb-preview a {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--main); font-size: 14px; font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px dashed var(--main);
+  padding-bottom: 2px;
+}
+</style>
+</head>
+<body>
+
+<header class="fb-header">
+  <h1>HP修正フィードバック</h1>
+  <p>各セクションの修正指示を入力して送信してください</p>
+</header>
+
+<div class="fb-preview">
+  <a href="index.html" target="_blank">👁 HPを見ながら確認する →</a>
+</div>
+
+<div class="fb-howto">
+  <div class="fb-howto-inner">
+    <strong>使い方：</strong><br>
+    ① 修正したいセクションをタップして開く<br>
+    ② 修正内容を入力する<br>
+    ③ 最後に下の「コピー」ボタンで送信
+  </div>
+</div>
+
+<div class="fb-counter"><span id="countFilled">0</span> / 10 セクション入力済み</div>
+
+<div class="fb-cards">
+
+  <div class="fb-card" data-section="1" data-name="ヘッダー">
+    <div class="fb-card-head">
+      <div class="fb-card-num">1</div>
+      <div class="fb-card-name">ヘッダー</div>
+      <span class="fb-card-badge">入力済 ✓</span>
+      <span class="fb-card-icon">▼</span>
+    </div>
+    <div class="fb-card-body">
+      <div class="fb-card-desc">ロゴ画像（便利屋ワンズスタイル）、ナビメニュー（サービス・料金・流れ・FAQ）、無料相談ボタン</div>
+      <textarea rows="3" placeholder="修正指示があればご記入ください"></textarea>
+    </div>
+  </div>
+
+  <div class="fb-card" data-section="2" data-name="トップ（ヒーロー）">
+    <div class="fb-card-head">
+      <div class="fb-card-num">2</div>
+      <div class="fb-card-name">トップ（ヒーロー）</div>
+      <span class="fb-card-badge">入力済 ✓</span>
+      <span class="fb-card-icon">▼</span>
+    </div>
+    <div class="fb-card-body">
+      <div class="fb-card-desc">ロゴ大表示、背景画像（ゴミ屋敷写真）、キャッチコピー「一人で悩まないでください どんな状態でも 片付けます」、年間500件・兵庫大阪対応バッジ、電話/LINEボタン、信頼バッジ4つ</div>
+      <textarea rows="3" placeholder="修正指示があればご記入ください"></textarea>
+    </div>
+  </div>
+
+  <div class="fb-card" data-section="3" data-name="サービス紹介">
+    <div class="fb-card-head">
+      <div class="fb-card-num">3</div>
+      <div class="fb-card-name">サービス紹介</div>
+      <span class="fb-card-badge">入力済 ✓</span>
+      <span class="fb-card-icon">▼</span>
+    </div>
+    <div class="fb-card-body">
+      <div class="fb-card-desc">3つのサービスブロック：<br>
+        ・ゴミ屋敷清掃（実績写真 + 特徴4つ + 料金 ¥50,000〜）<br>
+        ・遺品整理（作業写真 + 特徴4つ + 料金 ¥50,000〜）<br>
+        ・不用品回収（リサイクル図解 + 特徴4つ + 料金 ¥3,000/h〜）</div>
+      <textarea rows="3" placeholder="修正指示があればご記入ください"></textarea>
+    </div>
+  </div>
+
+  <div class="fb-card" data-section="4" data-name="お客様の声">
+    <div class="fb-card-head">
+      <div class="fb-card-num">4</div>
+      <div class="fb-card-name">お客様の声</div>
+      <span class="fb-card-badge">入力済 ✓</span>
+      <span class="fb-card-icon">▼</span>
+    </div>
+    <div class="fb-card-body">
+      <div class="fb-card-desc">レビュー3件：<br>
+        ・遺品整理（神戸市・50代・女性）★5<br>
+        ・ゴミ屋敷清掃（尼崎市・40代・男性）★5<br>
+        ・不用品回収（大阪市・30代・女性）★4</div>
+      <textarea rows="3" placeholder="修正指示があればご記入ください"></textarea>
+    </div>
+  </div>
+
+  <div class="fb-card" data-section="5" data-name="料金案内">
+    <div class="fb-card-head">
+      <div class="fb-card-num">5</div>
+      <div class="fb-card-name">料金案内</div>
+      <span class="fb-card-badge">入力済 ✓</span>
+      <span class="fb-card-icon">▼</span>
+    </div>
+    <div class="fb-card-body">
+      <div class="fb-card-desc">3タブ切替式の料金テーブル：<br>
+        ・ゴミ屋敷清掃（1K ¥50,000〜 / 2LDK ¥120,000〜）<br>
+        ・遺品整理（1K ¥50,000〜 / 2LDK ¥150,000〜）<br>
+        ・不用品回収（¥3,000/h〜 / 軽トラ ¥19,800〜 / 2t ¥39,800〜 / 4t ¥79,800〜）</div>
+      <textarea rows="3" placeholder="修正指示があればご記入ください"></textarea>
+    </div>
+  </div>
+
+  <div class="fb-card" data-section="6" data-name="ご依頼の流れ">
+    <div class="fb-card-head">
+      <div class="fb-card-num">6</div>
+      <div class="fb-card-name">ご依頼の流れ</div>
+      <span class="fb-card-badge">入力済 ✓</span>
+      <span class="fb-card-icon">▼</span>
+    </div>
+    <div class="fb-card-body">
+      <div class="fb-card-desc">4ステップ：お問い合わせ → 無料見積り → 作業実施 → 完了・お支払い</div>
+      <textarea rows="3" placeholder="修正指示があればご記入ください"></textarea>
+    </div>
+  </div>
+
+  <div class="fb-card" data-section="7" data-name="FAQ（よくある質問）">
+    <div class="fb-card-head">
+      <div class="fb-card-num">7</div>
+      <div class="fb-card-name">FAQ（よくある質問）</div>
+      <span class="fb-card-badge">入力済 ✓</span>
+      <span class="fb-card-icon">▼</span>
+    </div>
+    <div class="fb-card-body">
+      <div class="fb-card-desc">5つのQ&A：当日対応、無料見積り、プライバシー配慮、汚れ対応、対応エリア</div>
+      <textarea rows="3" placeholder="修正指示があればご記入ください"></textarea>
+    </div>
+  </div>
+
+  <div class="fb-card" data-section="8" data-name="CTA（お問い合わせ誘導）">
+    <div class="fb-card-head">
+      <div class="fb-card-num">8</div>
+      <div class="fb-card-name">CTA（お問い合わせ誘導）</div>
+      <span class="fb-card-badge">入力済 ✓</span>
+      <span class="fb-card-icon">▼</span>
+    </div>
+    <div class="fb-card-body">
+      <div class="fb-card-desc">大きなお問い合わせ誘導エリア：電話番号（080-2516-3271）、LINEで相談ボタン、メールで相談ボタン</div>
+      <textarea rows="3" placeholder="修正指示があればご記入ください"></textarea>
+    </div>
+  </div>
+
+  <div class="fb-card" data-section="9" data-name="お問い合わせフォーム">
+    <div class="fb-card-head">
+      <div class="fb-card-num">9</div>
+      <div class="fb-card-name">お問い合わせフォーム</div>
+      <span class="fb-card-badge">入力済 ✓</span>
+      <span class="fb-card-icon">▼</span>
+    </div>
+    <div class="fb-card-body">
+      <div class="fb-card-desc">入力フォーム：お名前、電話番号、メールアドレス、ご相談内容（ドロップダウン）、メッセージ、送信ボタン</div>
+      <textarea rows="3" placeholder="修正指示があればご記入ください"></textarea>
+    </div>
+  </div>
+
+  <div class="fb-card" data-section="10" data-name="フッター">
+    <div class="fb-card-head">
+      <div class="fb-card-num">10</div>
+      <div class="fb-card-name">フッター</div>
+      <span class="fb-card-badge">入力済 ✓</span>
+      <span class="fb-card-icon">▼</span>
+    </div>
+    <div class="fb-card-body">
+      <div class="fb-card-desc">会社情報（株式会社One's style、兵庫県西宮市、TEL）、サービスリンク、ご案内リンク、コピーライト</div>
+      <textarea rows="3" placeholder="修正指示があればご記入ください"></textarea>
+    </div>
+  </div>
+
+</div>
+
+<!-- Submit -->
+<div class="fb-submit">
+  <div class="fb-submit-inner">
+    <h3>修正指示を送信する</h3>
+    <div class="fb-submit-btns">
+      <button class="fb-btn fb-btn-copy" id="btnCopy">📋 クリップボードにコピー</button>
+      <a class="fb-btn fb-btn-line" id="btnLine" href="#">💬 LINEで送る</a>
+      <a class="fb-btn fb-btn-mail" id="btnMail" href="#">✉ メールで送る</a>
+    </div>
+  </div>
+</div>
+
+<div class="fb-toast" id="toast"></div>
+
+<script>
+(() => {
+  const cards = document.querySelectorAll('.fb-card');
+  const countEl = document.getElementById('countFilled');
+  const toast = document.getElementById('toast');
+
+  // Accordion
+  cards.forEach(card => {
+    card.querySelector('.fb-card-head').addEventListener('click', () => {
+      const wasOpen = card.classList.contains('open');
+      cards.forEach(c => c.classList.remove('open'));
+      if (!wasOpen) card.classList.add('open');
+    });
+
+    // Input watch
+    const ta = card.querySelector('textarea');
+    ta.addEventListener('input', () => {
+      card.classList.toggle('has-content', ta.value.trim().length > 0);
+      updateCount();
+    });
+  });
+
+  function updateCount() {
+    const filled = document.querySelectorAll('.fb-card.has-content').length;
+    countEl.textContent = filled;
+  }
+
+  // Build text
+  function buildText() {
+    const now = new Date();
+    const date = now.getFullYear() + '-' +
+      String(now.getMonth() + 1).padStart(2, '0') + '-' +
+      String(now.getDate()).padStart(2, '0') + ' ' +
+      String(now.getHours()).padStart(2, '0') + ':' +
+      String(now.getMinutes()).padStart(2, '0');
+
+    let text = '【HP修正フィードバック】\n';
+    text += '便利屋ワンズスタイル様\n';
+    text += '日時: ' + date + '\n';
+
+    let hasAny = false;
+    cards.forEach(card => {
+      const ta = card.querySelector('textarea');
+      const val = ta.value.trim();
+      if (val) {
+        hasAny = true;
+        const num = card.dataset.section;
+        const name = card.dataset.name;
+        text += '\n■ セクション' + num + ': ' + name + '\n';
+        text += val + '\n';
+      }
+    });
+
+    if (!hasAny) return null;
+    text += '\n（以上）';
+    return text;
+  }
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+  }
+
+  // Copy
+  document.getElementById('btnCopy').addEventListener('click', () => {
+    const text = buildText();
+    if (!text) { showToast('修正指示が入力されていません'); return; }
+    navigator.clipboard.writeText(text).then(() => {
+      showToast('コピーしました！LINEに貼り付けて送信してください');
+    }).catch(() => {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('コピーしました！LINEに貼り付けて送信してください');
+    });
+  });
+
+  // LINE
+  document.getElementById('btnLine').addEventListener('click', (e) => {
+    e.preventDefault();
+    const text = buildText();
+    if (!text) { showToast('修正指示が入力されていません'); return; }
+    if (text.length > 900) {
+      // Text too long for LINE URL scheme, copy instead
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('テキストが長いためコピーしました。LINEに貼り付けてください');
+      });
+      return;
+    }
+    window.location.href = 'https://line.me/R/share?text=' + encodeURIComponent(text);
+  });
+
+  // Mail
+  document.getElementById('btnMail').addEventListener('click', (e) => {
+    e.preventDefault();
+    const text = buildText();
+    if (!text) { showToast('修正指示が入力されていません'); return; }
+    const subject = encodeURIComponent('【HP修正フィードバック】便利屋ワンズスタイル様');
+    const body = encodeURIComponent(text);
+    window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+  });
+})();
+</script>
+
+</body>
+</html>
