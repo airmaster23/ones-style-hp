@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>デザインパターン選択 | One's style</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #eaf8fc; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+  .wrapper { max-width: 1000px; width: 100%; }
+  h1 { font-size: 28px; font-weight: 900; color: #1a1a2e; text-align: center; margin-bottom: 8px; }
+  .sub { text-align: center; color: #555; font-size: 15px; margin-bottom: 48px; }
+  .color-ref { text-align: center; margin-bottom: 32px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .color-chip { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #555; }
+  .chip { width: 24px; height: 24px; border-radius: 4px; border: 1px solid #ccc; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 3px 30px rgba(0,0,0,.12); transition: transform .2s; }
+  .card:hover { transform: translateY(-4px); }
+  .card-head { background: #4CA1D9; padding: 24px; color: #fff; text-align: center; }
+  .card-head h2 { font-size: 18px; font-weight: 900; margin-bottom: 4px; }
+  .card-head p { font-size: 12px; opacity: .9; }
+  .card-body { padding: 20px; }
+  .card-body ul { list-style: none; margin-bottom: 20px; }
+  .card-body ul li { padding: 6px 0; font-size: 13px; color: #444; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 6px; }
+  .card-body ul li::before { content: '→'; color: #4CA1D9; font-weight: 900; }
+  .card-link { display: block; text-align: center; background: #eb7633; color: #fff; font-weight: 700; font-size: 15px; padding: 14px; border-radius: 9999px; transition: background .2s; }
+  .card-link:hover { background: #c85e1f; }
+  @media (max-width: 700px) { .cards { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <h1>デザインパターン選択</h1>
+  <p class="sub">gomikaisyu-pro.com カラーで作成した3種類のデザインパターン</p>
+  <div class="color-ref">
+    <div class="color-chip"><div class="chip" style="background:#4CA1D9"></div>#4CA1D9 メインブルー</div>
+    <div class="color-chip"><div class="chip" style="background:#0083cf"></div>#0083cf ダークブルー</div>
+    <div class="color-chip"><div class="chip" style="background:#eaf8fc; border-color:#aaa"></div>#eaf8fc 薄いブルー背景</div>
+    <div class="color-chip"><div class="chip" style="background:#fffbea; border-color:#aaa"></div>#fffbea イエロー背景</div>
+    <div class="color-chip"><div class="chip" style="background:#eb7633"></div>#eb7633 オレンジCTA</div>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-head">
+        <h2>Pattern 1</h2>
+        <p>スタンダード</p>
+      </div>
+      <div class="card-body">
+        <ul>
+          <li>参考サイトに最も近い構成</li>
+          <li>ヒーロー：白背景＋青帯</li>
+          <li>3枚サービスカード横並び</li>
+          <li>Before/After セクション</li>
+          <li>タブ切替料金表</li>
+        </ul>
+        <a href="pattern1/index.html" class="card-link">Pattern 1 を見る →</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <h2>Pattern 2</h2>
+        <p>左右交互レイアウト</p>
+      </div>
+      <div class="card-body">
+        <ul>
+          <li>ヒーロー：フルカラー青グラデ</li>
+          <li>悩みセクション左右交互</li>
+          <li>実績数バナー（黄色ハイライト）</li>
+          <li>料金カード形式</li>
+          <li>お問い合わせフォーム付き</li>
+        </ul>
+        <a href="pattern2/index.html" class="card-link">Pattern 2 を見る →</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <h2>Pattern 3</h2>
+        <p>フルスクリーン強調型</p>
+      </div>
+      <div class="card-body">
+        <ul>
+          <li>全画面ヒーロー（インパクト大）</li>
+          <li>3サービス縦長大バナー</li>
+          <li>サービス詳細を豊富に掲載</li>
+          <li>大型CTAバナー（電話番号強調）</li>
+          <li>3列フッター</li>
+        </ul>
+        <a href="pattern3/index.html" class="card-link">Pattern 3 を見る →</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
