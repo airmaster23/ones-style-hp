@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>便利屋ワンズスタイル — デザインパターン選択</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Inter:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #0D1117;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: 8px;
+    }
+    .sub { color: #8B949E; margin-bottom: 48px; font-size: 14px; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 960px;
+      width: 100%;
+    }
+    .card {
+      background: #161B22;
+      border: 1px solid #30363D;
+      border-radius: 16px;
+      padding: 32px 28px;
+      text-decoration: none;
+      color: #fff;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+    }
+    .card--a:hover { border-color: #1B6B5A; }
+    .card--b:hover { border-color: #E8833A; }
+    .card--c:hover { border-color: #D2693B; }
+    .card__label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .card--a .card__label { color: #1B6B5A; }
+    .card--b .card__label { color: #E8833A; }
+    .card--c .card__label { color: #D2693B; }
+    .card__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .card__desc {
+      font-size: 13px;
+      color: #8B949E;
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 20px;
+    }
+    .card__colors {
+      display: flex;
+      gap: 8px;
+    }
+    .card__swatch {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #30363D;
+    }
+    .card__arrow {
+      margin-top: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .card--a .card__arrow { color: #1B6B5A; }
+    .card--b .card__arrow { color: #E8833A; }
+    .card--c .card__arrow { color: #D2693B; }
+    .footer { margin-top: 48px; color: #484F58; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <h1>Design Patterns</h1>
+  <p class="sub">便利屋ワンズスタイル — 3つのデザインパターンからお選びください</p>
+
+  <div class="cards">
+    <a href="pattern-a/" class="card card--a">
+      <span class="card__label">Pattern A</span>
+      <h2 class="card__title">クリーン＆トラスト</h2>
+      <p class="card__desc">白基調の清潔感あるデザイン。幅広い年齢層に安心感を与え、信頼感を重視したレイアウトです。</p>
+      <div class="card__colors">
+        <span class="card__swatch" style="background:#FAFAFA"></span>
+        <span class="card__swatch" style="background:#1B6B5A"></span>
+        <span class="card__swatch" style="background:#F0F2F5"></span>
+        <span class="card__swatch" style="background:#2563EB"></span>
+      </div>
+      <span class="card__arrow">View Pattern &rarr;</span>
+    </a>
+
+    <a href="pattern-b/" class="card card--b">
+      <span class="card__label">Pattern B</span>
+      <h2 class="card__title">ダーク＆プレミアム</h2>
+      <p class="card__desc">ダーク系の洗練されたデザイン。他社との差別化を図り、プロフェッショナルな印象を演出します。</p>
+      <div class="card__colors">
+        <span class="card__swatch" style="background:#0D1117"></span>
+        <span class="card__swatch" style="background:#E8833A"></span>
+        <span class="card__swatch" style="background:#fff"></span>
+        <span class="card__swatch" style="background:#8B949E"></span>
+      </div>
+      <span class="card__arrow">View Pattern &rarr;</span>
+    </a>
+
+    <a href="pattern-c/" class="card card--c">
+      <span class="card__label">Pattern C</span>
+      <h2 class="card__title">ナチュラル＆フレンドリー</h2>
+      <p class="card__desc">暖色系の温かみあるデザイン。地域密着の「頼れる便利屋さん」として親しみやすさを表現します。</p>
+      <div class="card__colors">
+        <span class="card__swatch" style="background:#FFF8F0"></span>
+        <span class="card__swatch" style="background:#D2693B"></span>
+        <span class="card__swatch" style="background:#4A7C59"></span>
+        <span class="card__swatch" style="background:#5C4033"></span>
+      </div>
+      <span class="card__arrow">View Pattern &rarr;</span>
+    </a>
+  </div>
+
+  <p class="footer">&copy; 2026 RH株式会社 — Design Preview</p>
+</body>
+</html>
