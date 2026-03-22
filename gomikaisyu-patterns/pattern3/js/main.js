@@ -44,4 +44,15 @@
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // PCでは電話リンクをお問い合わせフォームへ遷移させる
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if (!isMobile) {
+    document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  }
 })();

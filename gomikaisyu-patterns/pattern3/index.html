@@ -286,6 +286,49 @@
   </div>
 </section>
 
+<!-- ── Contact Form ─────────────────────────────────── -->
+<section class="section section-bg-blue" id="contact">
+  <div class="container">
+    <h2 class="section-title fade-in">お問い合わせ<span>フォーム</span></h2>
+    <p class="section-sub fade-in">お気軽にご相談ください。24時間以内にご返信いたします。</p>
+    <form class="contact-form fade-in" action="https://formspree.io/f/placeholder" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">お名前 <span class="required">必須</span></label>
+          <input type="text" id="name" name="name" required placeholder="山田 太郎">
+        </div>
+        <div class="form-group">
+          <label for="tel">電話番号</label>
+          <input type="tel" id="tel" name="tel" placeholder="090-1234-5678">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">メールアドレス <span class="required">必須</span></label>
+          <input type="email" id="email" name="email" required placeholder="example@email.com">
+        </div>
+        <div class="form-group">
+          <label for="service">ご相談内容</label>
+          <select id="service" name="service">
+            <option value="">選択してください</option>
+            <option value="ゴミ屋敷清掃">ゴミ屋敷清掃</option>
+            <option value="遺品整理">遺品整理</option>
+            <option value="不用品回収">不用品回収</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="message">お問い合わせ内容 <span class="required">必須</span></label>
+        <textarea id="message" name="message" rows="5" required placeholder="ご相談内容をご記入ください"></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-orange btn-orange-lg">📩 送信する</button>
+      </div>
+    </form>
+  </div>
+</section>
+
 <!-- ── Footer ─────────────────────────────────────── -->
 <footer class="footer">
   <div class="container">
