@@ -112,19 +112,19 @@
 <script src="js/main.js"></script>
 <script>
 // ============================================
-// microCMS 設定（※アカウント作成後に書き換え）
+// Googleスプレッドシート連携設定
 // ============================================
-const MICROCMS_DOMAIN = 'ones-style'; // サービスID
-const MICROCMS_API_KEY = '';           // APIキーをここに入れる
-const MICROCMS_ENDPOINT = 'blog';      // エンドポイント名
+// スプレッドシートのID（URLの /d/ と /edit の間の部分）
+var SHEET_ID = '';  // ※スプレッドシート作成後にここにIDを入れる
+var SHEET_NAME = 'blog';
 
-// フォールバック用の静的データ（microCMS未設定時に表示）
-const FALLBACK_POSTS = [
+// フォールバック用の静的データ（スプレッドシート未設定時に表示）
+var FALLBACK_POSTS = [
   {
     title: '1LDKのゴミ屋敷を2日間で完全清掃',
     category: 'ゴミ屋敷清掃',
     area: '西宮市',
-    date: '2026-04-01',
+    date: '2026/04/01',
     description: '10年以上手付かずだったお部屋を、スタッフ4名で2日間かけて清掃。キッチン・浴室の水回りも徹底的にクリーニングしました。',
     image: 'images/hero-before-after.png'
   },
@@ -132,7 +132,7 @@ const FALLBACK_POSTS = [
     title: '故人様への供養を含めた遺品整理',
     category: '遺品整理',
     area: '尼崎市',
-    date: '2026-03-25',
+    date: '2026/03/25',
     description: 'ご遺族様に寄り添い、お坊さんによる供養も行いながら丁寧に遺品を整理。大切な形見品はすべてご家族にお返ししました。',
     image: 'images/obousan.png'
   },
@@ -140,49 +140,90 @@ const FALLBACK_POSTS = [
     title: '引越し前の大量不用品を即日回収',
     category: '不用品回収',
     area: '大阪市',
-    date: '2026-03-18',
+    date: '2026/03/18',
     description: '引越し日まで3日しかない中、大型家具・家電を含む大量の不用品を即日対応。お客様に大変喜んでいただけました。',
     image: 'images/track-record.png'
   }
 ];
 
-function formatDate(dateStr) {
-  const d = new Date(dateStr);
-  return d.getFullYear() + '.' + String(d.getMonth()+1).padStart(2,'0') + '.' + String(d.getDate()).padStart(2,'0');
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 function renderCards(posts) {
-  const grid = document.getElementById('blog-grid');
+  var grid = document.getElementById('blog-grid');
   if (!posts || posts.length === 0) {
     grid.innerHTML = '<p class="blog-loading">まだ記事がありません</p>';
     return;
   }
   grid.innerHTML = posts.map(function(post) {
-    var imgSrc = post.image;
-    if (imgSrc && imgSrc.url) imgSrc = imgSrc.url;
     return '<div class="blog-card">' +
-      '<img src="' + imgSrc + '" alt="' + (post.title || '') + '" class="blog-card-img">' +
+      '<img src="' + escapeHtml(post.image) + '" alt="' + escapeHtml(post.title) + '" class="blog-card-img">' +
       '<div class="blog-card-body">' +
-        '<span class="blog-card-tag">' + (post.category || '') + '</span>' +
-        '<div class="blog-card-meta">' + formatDate(post.date || post.publishedAt) + ' ／ ' + (post.area || '') + '</div>' +
-        '<h3 class="blog-card-title">' + (post.title || '') + '</h3>' +
-        '<p class="blog-card-text">' + (post.description || '') + '</p>' +
+        '<span class="blog-card-tag">' + escapeHtml(post.category) + '</span>' +
+        '<div class="blog-card-meta">' + escapeHtml(post.date) + ' ／ ' + escapeHtml(post.area) + '</div>' +
+        '<h3 class="blog-card-title">' + escapeHtml(post.title) + '</h3>' +
+        '<p class="blog-card-text">' + escapeHtml(post.description) + '</p>' +
       '</div>' +
     '</div>';
   }).join('');
 }
 
-// microCMSから取得、失敗時はフォールバック表示
-if (MICROCMS_API_KEY) {
-  fetch('https://' + MICROCMS_DOMAIN + '.microcms.io/api/v1/' + MICROCMS_ENDPOINT + '?limit=20&orders=-date', {
-    headers: { 'X-MICROCMS-API-KEY': MICROCMS_API_KEY }
-  })
-  .then(function(res) { return res.json(); })
-  .then(function(data) { renderCards(data.contents); })
-  .catch(function() { renderCards(FALLBACK_POSTS); });
-} else {
-  renderCards(FALLBACK_POSTS);
+// Googleドライブの画像URLを表示可能な形式に変換
+function convertDriveUrl(url) {
+  if (!url) return '';
+  // https://drive.google.com/file/d/FILE_ID/view 形式
+  var match = url.match(/\/file\/d\/([^\/]+)/);
+  if (match) return 'https://lh3.googleusercontent.com/d/' + match[1];
+  // https://drive.google.com/open?id=FILE_ID 形式
+  match = url.match(/[?&]id=([^&]+)/);
+  if (match) return 'https://lh3.googleusercontent.com/d/' + match[1];
+  return url;
 }
+
+// Googleスプレッドシートからデータ取得
+function fetchFromSheet() {
+  if (!SHEET_ID) {
+    renderCards(FALLBACK_POSTS);
+    return;
+  }
+  var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID +
+            '/gviz/tq?tqx=out:json&sheet=' + encodeURIComponent(SHEET_NAME);
+
+  fetch(url)
+    .then(function(res) { return res.text(); })
+    .then(function(text) {
+      // レスポンスは google.visualization.Query.setResponse({...}); 形式
+      var json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\((.+)\);/)[1]);
+      var rows = json.table.rows;
+      var posts = [];
+
+      // 1行目はヘッダーなのでスキップ（gvizは自動でヘッダー除外済み）
+      // 列順: A=日付, B=カテゴリ, C=エリア, D=タイトル, E=説明文, F=画像URL
+      for (var i = 0; i < rows.length; i++) {
+        var c = rows[i].c;
+        if (!c[3] || !c[3].v) continue; // タイトルが空なら飛ばす
+        posts.push({
+          date:        c[0] ? (c[0].f || c[0].v) : '',
+          category:    c[1] ? c[1].v : '',
+          area:        c[2] ? c[2].v : '',
+          title:       c[3] ? c[3].v : '',
+          description: c[4] ? c[4].v : '',
+          image:       convertDriveUrl(c[5] ? c[5].v : '')
+        });
+      }
+      // 新しい順にソート
+      posts.reverse();
+      renderCards(posts);
+    })
+    .catch(function(err) {
+      console.error('スプレッドシート取得エラー:', err);
+      renderCards(FALLBACK_POSTS);
+    });
+}
+
+fetchFromSheet();
 </script>
 </body>
 </html>
