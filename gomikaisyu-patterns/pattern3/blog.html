@@ -189,7 +189,7 @@ function fetchFromSheet() {
     return;
   }
   var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID +
-            '/gviz/tq?tqx=out:json&sheet=' + encodeURIComponent(SHEET_NAME);
+            '/gviz/tq?tqx=out:json&gid=194693508';
 
   fetch(url)
     .then(function(res) { return res.text(); })
