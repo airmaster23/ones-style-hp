@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作業ブログ | 株式会社 One's style【兵庫・大阪対応】</title>
+<meta name="description" content="便利屋ワンズスタイルの作業ブログ。ゴミ屋敷清掃・遺品整理・不用品回収のビフォーアフター事例をご紹介します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.blog-hero {
+  margin-top: 72px;
+  background: linear-gradient(135deg, var(--sub) 0%, var(--main) 60%, #6bbfe6 100%);
+  padding: 48px 20px;
+  text-align: center;
+}
+.blog-hero img { max-width: 800px; width: 100%; margin: 0 auto; border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,.3); }
+.blog-list { padding: 60px 0; }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 28px; }
+.blog-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); transition: transform var(--tr), box-shadow var(--tr); }
+.blog-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,.15); }
+.blog-card-img { width: 100%; aspect-ratio: 16/10; object-fit: cover; }
+.blog-card-body { padding: 20px 24px 24px; }
+.blog-card-tag { display: inline-block; background: var(--bg-blue); color: var(--main); font-size: 12px; font-weight: 700; padding: 3px 12px; border-radius: var(--pill); margin-bottom: 10px; }
+.blog-card-title { font-size: 17px; font-weight: 700; color: var(--heading); margin-bottom: 8px; line-height: 1.5; }
+.blog-card-meta { font-size: 13px; color: #999; margin-bottom: 10px; }
+.blog-card-text { font-size: 14px; color: #555; line-height: 1.7; }
+.blog-coming { text-align: center; padding: 80px 20px; }
+.blog-coming h2 { font-size: 24px; color: var(--heading); margin-bottom: 16px; }
+.blog-coming p { font-size: 16px; color: #666; margin-bottom: 32px; }
+.back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--main); font-weight: 700; font-size: 15px; margin-top: 40px; }
+.back-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<!-- ── Header ────────────────────────────────────── -->
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><img src="images/logo.png" alt="便利屋ワンズスタイル"><span class="logo-text">ワンズ<span class="logo-text-accent">スタイル</span></span></a>
+      <nav class="gnav">
+        <a href="index.html#services">サービス</a>
+        <a href="index.html#price">料金</a>
+        <a href="index.html#flow">流れ</a>
+        <a href="index.html#faq">FAQ</a>
+      </nav>
+      <a href="tel:08025163271" class="header-cta">📞 無料相談</a>
+      <button class="hamburger" aria-label="メニュー"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ── Blog Hero ──────────────────────────────────── -->
+<section class="blog-hero">
+  <img src="images/blog-banner.png" alt="便利屋ワンズスタイル 作業ブログ">
+</section>
+
+<!-- ── Blog List ──────────────────────────────────── -->
+<section class="blog-list">
+  <div class="container">
+    <h2 class="section-title">施工<span>事例</span></h2>
+    <p class="section-sub">実際の作業のビフォーアフターをご紹介します</p>
+
+    <div class="blog-grid">
+      <div class="blog-card">
+        <img src="images/hero-before-after.png" alt="ゴミ屋敷清掃 ビフォーアフター" class="blog-card-img">
+        <div class="blog-card-body">
+          <span class="blog-card-tag">ゴミ屋敷清掃</span>
+          <div class="blog-card-meta">2026.04.01 ／ 西宮市</div>
+          <h3 class="blog-card-title">1LDKのゴミ屋敷を2日間で完全清掃</h3>
+          <p class="blog-card-text">10年以上手付かずだったお部屋を、スタッフ4名で2日間かけて清掃。キッチン・浴室の水回りも徹底的にクリーニングしました。</p>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="images/obousan.png" alt="遺品整理 供養の様子" class="blog-card-img">
+        <div class="blog-card-body">
+          <span class="blog-card-tag">遺品整理</span>
+          <div class="blog-card-meta">2026.03.25 ／ 尼崎市</div>
+          <h3 class="blog-card-title">故人様への供養を含めた遺品整理</h3>
+          <p class="blog-card-text">ご遺族様に寄り添い、お坊さんによる供養も行いながら丁寧に遺品を整理。大切な形見品はすべてご家族にお返ししました。</p>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="images/track-record.png" alt="不用品回収の実績" class="blog-card-img">
+        <div class="blog-card-body">
+          <span class="blog-card-tag">不用品回収</span>
+          <div class="blog-card-meta">2026.03.18 ／ 大阪市</div>
+          <h3 class="blog-card-title">引越し前の大量不用品を即日回収</h3>
+          <p class="blog-card-text">引越し日まで3日しかない中、大型家具・家電を含む大量の不用品を即日対応。お客様に大変喜んでいただけました。</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:48px;">
+      <p style="color:#888; font-size:15px;">今後も施工事例を随時更新していきます</p>
+      <a href="index.html" class="back-link">← トップページに戻る</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo"><img src="images/logo.png" alt="便利屋ワンズスタイル"></div>
+        <div class="footer-info">
+          株式会社 One's style<br>
+          〒663-8229<br>
+          兵庫県西宮市今津社前町2-3-1F<br>
+          TEL: 080-2516-3271<br>
+          受付: 24時間
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>サービス</h4>
+        <a href="index.html#services">ゴミ屋敷清掃</a>
+        <a href="index.html#services">遺品整理</a>
+        <a href="index.html#services">不用品回収</a>
+      </div>
+      <div class="footer-col">
+        <h4>ご案内</h4>
+        <a href="index.html#price">料金案内</a>
+        <a href="index.html#flow">ご依頼の流れ</a>
+        <a href="index.html#faq">よくある質問</a>
+      </div>
+    </div>
+    <div class="footer-copy">&copy; 2024 株式会社 One's style All Rights Reserved.</div>
+  </div>
+</footer>
+
+<div class="mobile-cta-bar">
+  <a href="tel:08025163271" class="mobile-cta-tel">📞 電話する</a>
+  <a href="https://line.me/R/ti/p/@ones-style" class="mobile-cta-line">💬 LINE</a>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
