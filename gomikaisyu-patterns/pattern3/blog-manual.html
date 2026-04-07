@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作業ブログ更新マニュアル | ワンズスタイル</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans JP', sans-serif; color: #333; line-height: 1.8; background: #f5f5f5; }
+.manual { max-width: 800px; margin: 0 auto; background: #fff; }
+.manual-header { background: linear-gradient(135deg, #0083cf 0%, #4CA1D9 60%, #6bbfe6 100%); color: #fff; padding: 48px 40px; }
+.manual-header h1 { font-size: 28px; font-weight: 900; margin-bottom: 8px; }
+.manual-header p { font-size: 15px; opacity: .9; }
+.manual-body { padding: 40px; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: 20px; font-weight: 900; color: #0083cf; border-left: 4px solid #0083cf; padding-left: 12px; margin-bottom: 20px; }
+.step { display: flex; gap: 16px; margin-bottom: 24px; }
+.step-num { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: #eb7633; color: #fff; font-size: 18px; font-weight: 900; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+.step-content { flex: 1; }
+.step-content h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.step-content p { font-size: 14px; color: #555; }
+.info-box { background: #eaf8fc; border: 1px solid #4CA1D9; border-radius: 8px; padding: 20px; margin: 16px 0; font-size: 14px; }
+.info-box strong { color: #0083cf; }
+.warning-box { background: #fff8e8; border: 1px solid #eb7633; border-radius: 8px; padding: 20px; margin: 16px 0; font-size: 14px; }
+.warning-box strong { color: #eb7633; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+th { background: #4CA1D9; color: #fff; padding: 10px 14px; text-align: left; font-weight: 700; }
+td { padding: 10px 14px; border-bottom: 1px solid #ddd; }
+tr:nth-child(even) td { background: #f9f9f9; }
+.url-box { background: #f0f0f0; border-radius: 6px; padding: 12px 16px; font-size: 13px; word-break: break-all; margin: 8px 0; font-family: monospace; }
+.footer-note { text-align: center; padding: 24px; color: #999; font-size: 12px; border-top: 1px solid #eee; }
+@media print {
+  body { background: #fff; }
+  .manual { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="manual">
+
+  <!-- ヘッダー -->
+  <div class="manual-header">
+    <h1>作業ブログ 更新マニュアル</h1>
+    <p>便利屋ワンズスタイル ホームページ管理用</p>
+  </div>
+
+  <div class="manual-body">
+
+    <!-- はじめに -->
+    <div class="section">
+      <h2 class="section-title">はじめに</h2>
+      <p>このマニュアルでは、ホームページの「作業ブログ」に新しい施工事例を追加する方法をご説明します。Googleスプレッドシートに入力するだけで、ホームページに自動的に反映されます。</p>
+      <div class="info-box">
+        <strong>必要なもの：</strong> Googleアカウント、スマートフォンまたはパソコン
+      </div>
+    </div>
+
+    <!-- 全体の流れ -->
+    <div class="section">
+      <h2 class="section-title">全体の流れ</h2>
+      <p>たったの3ステップで記事を追加できます。</p>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>写真をGoogleドライブにアップロード</h3>
+          <p>施工事例の写真をGoogleドライブに保存します</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>写真の共有リンクを取得</h3>
+          <p>アップロードした写真のリンクをコピーします</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>スプレッドシートに記入</h3>
+          <p>記事の情報と写真リンクをシートに入力します</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 1: 写真アップロード -->
+    <div class="section">
+      <h2 class="section-title">Step 1：写真をGoogleドライブにアップロード</h2>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Googleドライブを開く</h3>
+          <p>ブラウザで以下のURLにアクセスします。</p>
+          <div class="url-box">https://drive.google.com</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>「+ 新規」→「ファイルのアップロード」</h3>
+          <p>左上の「+ 新規」ボタンを押して、「ファイルのアップロード」を選びます。</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>施工事例の写真を選択してアップロード</h3>
+          <p>パソコンまたはスマホから写真を選んでアップロードします。ビフォーアフターの写真がおすすめです。</p>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong>スマートフォンの場合：</strong>Googleドライブアプリを開いて、右下の「+」ボタンからアップロードできます。
+      </div>
+    </div>
+
+    <!-- Step 2: 共有リンク取得 -->
+    <div class="section">
+      <h2 class="section-title">Step 2：写真の共有リンクを取得</h2>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>アップロードした写真を右クリック</h3>
+          <p>Googleドライブでアップロードした写真を右クリック（スマホは長押し）します。</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>「共有」→「リンクを知っている全員」に変更</h3>
+          <p>「共有」を選んで、アクセス権を「制限付き」から<strong>「リンクを知っている全員」</strong>に変更します。</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>「リンクをコピー」をクリック</h3>
+          <p>リンクがコピーされます。このリンクをスプレッドシートに貼り付けます。</p>
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <strong>重要：</strong>「リンクを知っている全員」に変更しないと、ホームページに画像が表示されません。必ず変更してください。
+      </div>
+    </div>
+
+    <!-- Step 3: スプレッドシート入力 -->
+    <div class="section">
+      <h2 class="section-title">Step 3：スプレッドシートに記入</h2>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>スプレッドシートを開く</h3>
+          <p>以下のリンクからスプレッドシートを開きます。</p>
+          <div class="url-box">https://docs.google.com/spreadsheets/d/1lIPXKrhJ8XOehHiX3h886QSqogWWOfz30wuidX97nSA/edit</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>新しい行に記事情報を入力</h3>
+          <p>一番下の空白行に、以下の順番で入力します。</p>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr><th>列</th><th>入力内容</th><th>例</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>A列：日付</strong></td><td>作業した日付</td><td>2026/04/07</td></tr>
+          <tr><td><strong>B列：カテゴリ</strong></td><td>サービスの種類</td><td>ゴミ屋敷清掃</td></tr>
+          <tr><td><strong>C列：エリア</strong></td><td>作業した地域</td><td>西宮市</td></tr>
+          <tr><td><strong>D列：タイトル</strong></td><td>記事のタイトル</td><td>2DKのゴミ屋敷を1日で清掃</td></tr>
+          <tr><td><strong>E列：説明文</strong></td><td>作業の詳細説明</td><td>長年放置されていた...</td></tr>
+          <tr><td><strong>F列：画像URL</strong></td><td>Step 2でコピーしたリンク</td><td>https://drive.google.com/...</td></tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <strong>カテゴリの入力例：</strong><br>
+        ・ゴミ屋敷清掃<br>
+        ・遺品整理<br>
+        ・不用品回収<br>
+        ※上記以外のカテゴリも自由に入力できます
+      </div>
+    </div>
+
+    <!-- 反映について -->
+    <div class="section">
+      <h2 class="section-title">反映について</h2>
+      <p>スプレッドシートに入力すると、数分以内にホームページに自動反映されます。特別な操作は必要ありません。</p>
+      <div class="info-box">
+        <strong>ブログページのURL：</strong>
+        <div class="url-box">https://airmaster23.github.io/ones-style-hp/gomikaisyu-patterns/pattern3/blog.html</div>
+        入力後にこのページを開いて、正しく表示されているか確認してください。
+      </div>
+    </div>
+
+    <!-- よくある質問 -->
+    <div class="section">
+      <h2 class="section-title">よくある質問</h2>
+
+      <div class="step">
+        <div class="step-content">
+          <h3>Q. 画像が表示されません</h3>
+          <p>→ Googleドライブの共有設定が「リンクを知っている全員」になっているか確認してください。</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-content">
+          <h3>Q. 記事を削除したい</h3>
+          <p>→ スプレッドシートの該当行を削除（行を選択して右クリック→「行を削除」）すれば、ホームページからも消えます。</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-content">
+          <h3>Q. 記事の順番を変えたい</h3>
+          <p>→ 新しい日付の記事が上に表示されます。A列の日付で順番が決まります。</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-content">
+          <h3>Q. スマホからも更新できますか？</h3>
+          <p>→ はい。Googleスプレッドシートアプリとドライブアプリがあれば、スマホからも更新できます。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- お問い合わせ -->
+    <div class="section">
+      <h2 class="section-title">お困りの場合</h2>
+      <p>操作でお困りの際は、お気軽にご連絡ください。</p>
+      <div class="info-box">
+        <strong>RH Technology 久司 吏佑</strong><br>
+        メール: info@rh-inc.jp
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    作業ブログ更新マニュアル｜便利屋ワンズスタイル｜作成：RH Technology
+  </div>
+
+</div>
+
+</body>
+</html>
