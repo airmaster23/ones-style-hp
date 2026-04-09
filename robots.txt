@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://benriya-os.com/sitemap.xml
